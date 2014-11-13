@@ -16,6 +16,7 @@ class SVGWriter
 
 		b = Nokogiri::XML::Builder.new do |doc|
 		  doc.svg xmlns:"http://www.w3.org/2000/svg", viewBox:"0 -400 500 500" do
+		  	doc.text_ "time:#{time_taken}", x:-50, y:-375
 		  	column_separation = 15
 		  	0.upto(6) do |column|
 		  		percentage = (valid_tasks[column]/58.0)*100
