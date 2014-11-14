@@ -6,15 +6,7 @@ require_relative "JSONWriter"
 require_relative "SVGWriter"
 
 TOTAL_HOMEWORKS = 6
-HOMEWORK_NAMES = {
-	0 => "vh_nivo",
-	1 => "class002",
-	2 => "class003",
-	3 => "class004",
-	4 => "class009",
-	5 => "class012",
-	6 => "class014"
-}.freeze
+HOMEWORK_NAMES = ["vh_nivo","class002","class003","class004","class009","class012","class014"].freeze
 
 time_start = Time.now
 
@@ -132,19 +124,6 @@ Dir.chdir current_path
 # --- WRITING
 writer = CSVWriter.new
 ARGV.each_with_index do |arg, i|
-if arg == "-o"
-	case ARGV[i+1]
-		when "xml"
-		writer = XMLWriter.new
-		when "csv"
-		writer = CSVWriter.new
-		when "json"
-		writer = JSONWriter.new
-		when "html"
-		writer = HTMLWriter.new
-		when "svg"
-		writer = SVGWriter.new
-		end
-	end
+	writer = eval("#{ARGV[i+1].upcase}Writer.new") if (arg == "-o") && (ARGV[i+1] =~ /\Axml\Z|\Ahtml\Z|\Ajson\Z|\Asvg\Z/)
 end
 writer.write data.sort, time_taken
