@@ -10,14 +10,10 @@ class JSONWriter
 		data.each do |name, values|
 			cur_hash = Hash.new
 			cur_hash["name"] = name
-			cur_hash["vhodno_nivo"] = values[0]
-			cur_hash["class002"] = values[1]
-			cur_hash["class003"] = values[2]
-			cur_hash["class004"] = values[3]
-			cur_hash["class009"] = values[4]
-			cur_hash["class012"] = values[5]
-			cur_hash["class014"] = values[6]
-		
+			0.upto(TOTAL_HOMEWORKS){|homework|
+				cur_hash[HOMEWORK_NAMES[homework]] = values[homework]
+			}
+			
 			student_hash["student"] << cur_hash
 		end
 

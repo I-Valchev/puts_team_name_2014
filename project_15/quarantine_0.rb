@@ -150,3 +150,24 @@ case ARGV[2]
 		writer = SVGWriter.new
 end
 writer.write data.sort, time_taken
+# test
+=begin
+		  	doc.text_("150:150",:x=>150,:y=>150)
+		  	doc.text_("-150:-150",:x=>-150,:y=>-150)
+		  	doc.text_("0:0",:x=>0,:y=>0)
+		  	doc.text_("300:300",:x=>300,:y=>300)
+		  	doc.text_("-300:-300",:x=>-300,:y=>-300)
+		  	doc.text_("450:450",:x=>450,:y=>450)
+		  	#doc.rect x:150, y:450, width:250, height: 250
+		  			  		#doc.Options("x"=>"0", "y"=>"-150"){doc.text_ "text"}
+		  		#doc.Option("x"=>"0", "y"=>"-150"){ doc.text("hello") }
+		  		#doc.text_ "text" 
+		  		
+						html.td "VH"
+						html.td "002"
+						html.td "003"
+						html.td "004"
+						html.td "009"
+						html.td "012"
+						html.td "014"
+=end

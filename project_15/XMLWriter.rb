@@ -16,13 +16,9 @@ class XMLWriter
 				xml.student{
 					xml.name key
 					xml.results{
-						xml.vhodno_nivo "#{value[0]}"
-						xml.class002 "#{value[1]}"
-						xml.class003 "#{value[2]}"
-						xml.class004 "#{value[3]}"
-						xml.class009 "#{value[4]}"
-						xml.class012 "#{value[5]}"
-						xml.class014 "#{value[6]}"
+						0.upto(TOTAL_HOMEWORKS) do |curr_hw|
+							xml.send(HOMEWORK_NAMES[curr_hw], "#{value[curr_hw]}")
+						end
 					}
 				}
 			}

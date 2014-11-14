@@ -16,19 +16,12 @@ class SVGWriter
 
 		b = Nokogiri::XML::Builder.new do |doc|
 		  doc.svg xmlns:"http://www.w3.org/2000/svg", viewBox:"0 -400 500 500" do
-		  	doc.text_ "time:#{time_taken}", x:-50, y:-375
 		  	column_separation = 15
-		  	0.upto(6) do |column|
+		  	0.upto(TOTAL_HOMEWORKS) do |column|
 		  		percentage = (valid_tasks[column]/58.0)*100
 		  		doc.rect x:(column*column_separation*5), y:-valid_tasks[column]*5, width:50, height: valid_tasks[column]*5, stroke:"red"
 				doc.text_ "#{percentage.round(2)}%", x:(column*75), y:-(valid_tasks[column]*5)-10#, font-size:24
-				doc.text_ "vh_nivo", x:(column*column_separation*5), y:+column_separation if column==0
-				doc.text_ "class002", x:(column*column_separation*5), y:+column_separation if column==1
-				doc.text_ "class003", x:(column*column_separation*5), y:+column_separation if column==2
-				doc.text_ "class004", x:(column*column_separation*5), y:+column_separation if column==3
-				doc.text_ "class009", x:(column*column_separation*5), y:+column_separation if column==4
-				doc.text_ "class012", x:(column*column_separation*5), y:+column_separation if column==5
-				doc.text_ "class014", x:(column*column_separation*5), y:+column_separation if column==6
+				doc.text_ HOMEWORK_NAMES[column], x:(column*column_separation*5), y:+column_separation if column==column
 		  	end
 		  end
 		end

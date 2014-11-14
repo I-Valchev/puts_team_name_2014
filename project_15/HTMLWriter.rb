@@ -12,21 +12,15 @@ class HTMLWriter
 					html.tr{
 						html.td "#{time_taken}"
 						html.td ""
-						html.td "VH"
-						html.td "002"
-						html.td "003"
-						html.td "004"
-						html.td "009"
-						html.td "012"
-						html.td "014"
+						0.upto(TOTAL_HOMEWORKS) do |curr_hw|
+							html.td HOMEWORK_NAMES[curr_hw]
+						end
 					}
 					data.each{|key, value|
 						html.tr{
 							html.td key.split('_').first
 							html.td key.split('_').last
-							value.each{|value|
-								html.td value
-							}
+							value.each{ |value| html.td value }
 						}
 					}
 				}
