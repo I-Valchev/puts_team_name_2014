@@ -15,14 +15,13 @@ def check_entry_level folder_path
 	acceptable_extensions = [ '.c', '.cpp', '.cc', '.rb', '.py', '.java', '.html', '.js', '.pas' ]
 	hash = Hash.new { |hash, key| hash[key] = Array.new}
 		Dir.glob("#{folder_path}**/*.*") do |file|
-		extension = file.split('/').last.split('.').last
 		fields = file.split('/').last.split('.').first.split('_')
-		if acceptable_extensions.include?('.' + extension) && fields.length == 3
+		if acceptable_extensions.include?(File.extname(file)) && fields.length == 3
 			first_name = fields[0]
 			last_name = fields[1]
 			problem_num = Integer(fields[2]) rescue nil
 			unless first_name.empty? || last_name.empty? || problem_num.nil?
-				if problem_num > 1 && problem_num < 19
+				if ((1..18)===problem_num)
 					hash_key = first_name.capitalize+'_'+last_name.capitalize
 					hash[hash_key].push problem_num unless hash[hash_key].include? problem_num
 					end
@@ -53,6 +52,7 @@ def csv_reading(student_to_team)
 		student_to_team[student_name] = team_name
 	end
 end
+
 data = Hash.new { |hash, key| hash[key] = Array.new }
 current_path = Dir.pwd
 Dir.chdir repo_folder
@@ -121,9 +121,11 @@ data.each_value{ |key|
 system("git checkout master -q")
 time_taken = Time.now - time_start
 Dir.chdir current_path
+
 # --- WRITING
+
 writer = CSVWriter.new
 ARGV.each_with_index do |arg, i|
-	writer = eval("#{ARGV[i+1].upcase}Writer.new") if (arg == "-o") && (ARGV[i+1] =~ /\Axml\Z|\Ahtml\Z|\Ajson\Z|\Asvg\Z/)
+	writer = eval("#{arg.upcase}Writer.new") if (ARGV[i-1] == "-o" && arg =~ /\Axml\Z|\Ahtml\Z|\Ajson\Z|\Asvg\Z/)
 end
 writer.write data.sort, time_taken
