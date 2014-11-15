@@ -6,35 +6,36 @@ require_relative "JSONWriter"
 require_relative "SVGWriter"
 
 TOTAL_HOMEWORKS = 6
+HOMEWORK_NUMBERS = ["",2,3,4,9,12,14]
 HOMEWORK_NAMES = ["vh_nivo","class002","class003","class004","class009","class012","class014"].freeze
-
+DEADLINES = ["Sep 17 2014 20:00","Sep 22 2014 20:00","Sep 24 2014 20:00","Sep 29 2014 20:00","Oct 27 2014 20:00","Nov 10 2014 20:00","Nov 13 2014 06:00"].freeze
 time_start = Time.now
 
 repo_folder = ARGV[0]
-def check_entry_level folder_path
+def check_entry_level data, value_to_write
 	acceptable_extensions = [ '.c', '.cpp', '.cc', '.rb', '.py', '.java', '.html', '.js', '.pas' ]
-	hash = Hash.new { |hash, key| hash[key] = Array.new}
-		Dir.glob("#{folder_path}**/*.*") do |file|
-		fields = file.split('/').last.split('.').first.split('_')
-		if acceptable_extensions.include?(File.extname(file)) && fields.length == 3
-			first_name = fields[0]
-			last_name = fields[1]
-			problem_num = Integer(fields[2]) rescue nil
-			unless first_name.empty? || last_name.empty? || problem_num.nil?
-				if ((1..18)===problem_num)
-					hash_key = first_name.capitalize+'_'+last_name.capitalize
-					hash[hash_key].push problem_num unless hash[hash_key].include? problem_num
-					end
-				end
+	hash = Hash.new {|hash, key| hash[key] = Array.new}
+	Dir.glob("vhodno_nivo/**/*.*") do |file|
+		first_name, last_name, problem_num = file.gsub(/.*\/|\..*/,'').split('_')
+		if acceptable_extensions.include?(File.extname(file)) && (Integer(problem_num) rescue false)
+			problem_num = problem_num.to_i
+			unless first_name.empty? || last_name.empty? || !(1..18)===problem_num
+				hash_key = first_name.capitalize+'_'+last_name.capitalize
+				hash[hash_key].push problem_num unless hash[hash_key].include? problem_num
 			end
 		end
-	hash
+	end
+	case value_to_write
+		when 1
+			hash.each { |name, problems| problems.size >= 3 ? data[name][0] = 1 : data[name][0] = 0 }
+		when 2
+			hash.each { |name, problems| data[name][0] = 2 if problems.size >= 3 }
+	end
 end
 def check_folder folder_path, hash, folder_number, filename_format, value_to_write
 	Dir.glob("#{folder_path}**/*.*") do |file|
 		if file.split('/').last =~ filename_format
-			first_name = file.split('/').last.split('_')[0]
-			last_name = file.split('/').last.split('_')[1]
+			first_name, last_name = file.split('/').last.split('_')
 			hash[first_name+'_'+last_name][folder_number] = value_to_write
 		end
 	end
@@ -58,60 +59,26 @@ current_path = Dir.pwd
 Dir.chdir repo_folder
 data.each { |key, value| data[key][value] = nil }
 
-# --- ENTRY LEVEL
-
-entry_level_hash = check_entry_level(ARGV[0] + 'vhodno_nivo/')
-entry_level_hash.each { |name, problems| problems.size >= 3 ? data[name][0] = 1 : data[name][0] = 0 }
-
-# --- CLASS 002
-
-check_folder "#{ARGV[0]}class002_homework/", data, 1, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class2_[12].rb$/, 1
-
-# --- CLASS 003
-
-check_folder "#{ARGV[0]}class003_homework/", data, 2, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class3_[12].rb$/, 1
-
-# --- CLASS 004
-
-check_folder "#{ARGV[0]}class004/", data, 3, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$/, 1
-
-# --- CLASS 009
-
+# --- CHECKERER
 student_to_team = Hash.new
 csv_reading(student_to_team)
-presentation_names(data, student_to_team, 1)
-
-# --- CLASS 012
-
-check_folder "#{ARGV[0]}class012_homework/", data, 5, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, 1
-
-# --- CLASS 014
-
-check_folder "#{ARGV[0]}class014_homework/", data, 6, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, 1
-
-# --- TIME-ON-CHECKS
-
-system 'git checkout `git rev-list -1 --before="Sep 17 2014 20:00" master` -q'
-entry_level_hash = check_entry_level(ARGV[0] + 'vhodno_nivo/')
-entry_level_hash.each { |name, problems| data[name][0] = 2 if problems.size >= 3 }
-
-system 'git checkout `git rev-list -1 --before="Sep 22 2014 20:00" master` -q'
-check_folder "#{ARGV[0]}class002_homework/", data, 1, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class2_[12].rb$/, 2
-
-system 'git checkout `git rev-list -1 --before="Sep 24 2014 20:00" master` -q'
-check_folder "#{ARGV[0]}class003_homework/", data, 2, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class3_[12].rb$/, 2
-
-system 'git checkout `git rev-list -1 --before="Sep 29 2014 20:00" master` -q'
-check_folder "#{ARGV[0]}class004/", data, 3, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$/, 2
-
-system 'git checkout `git rev-list -1 --before="Oct 27 2014 20:00" master` -q'
-presentation_names(data, student_to_team, 2)
-
-system 'git checkout `git rev-list -1 --before="Nov 10 2014 20:00" master` -q'
-check_folder "#{ARGV[0]}class012_homework/", data, 5, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, 2
-
-system 'git checkout `git rev-list -1 --before="Nov 13 2014 06:00" master` -q'
-check_folder "#{ARGV[0]}class014_homework/", data, 6, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, 2
+for i in 1..2
+	0.upto(TOTAL_HOMEWORKS) do |curr_hw|
+		system "git checkout `git rev-list -1 --before=\"#{DEADLINES[curr_hw]}\" master` -q" if i==2
+		case curr_hw
+			when 0
+				check_entry_level data, i
+			when 1..2
+				check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class#{HOMEWORK_NUMBERS[curr_hw]}_[12].rb$/, i
+			when 3
+				check_folder "class004/", data, 3, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$/, i
+			when 4
+				presentation_names data, student_to_team, i
+			when 5..6
+				check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i
+		end
+	end
+end
 
 # --- ENZEROING
 
@@ -124,8 +91,10 @@ Dir.chdir current_path
 
 # --- WRITING
 
-writer = CSVWriter.new
-ARGV.each_with_index do |arg, i|
-	writer = eval("#{arg.upcase}Writer.new") if (ARGV[i-1] == "-o" && arg =~ /\Axml\Z|\Ahtml\Z|\Ajson\Z|\Asvg\Z/)
+format = 'csv'
+if ARGV.include?('-o')
+	format_index = ARGV.index('-o')+1
+	format = ARGV[format_index]
 end
+writer = eval("#{format.upcase}Writer.new") if format =~ /\Axml\Z|\Ahtml\Z|\Ajson\Z|\Asvg\Z|\Acsv\Z/
 writer.write data.sort, time_taken

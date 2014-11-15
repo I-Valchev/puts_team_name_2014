@@ -8,7 +8,7 @@ class HTMLWriter
 				html.title "Results"
 			}
 			html.body{
-				html.table{
+				html.table(:border => 1){
 					html.tr{
 						html.td "#{time_taken}"
 						html.td ""
