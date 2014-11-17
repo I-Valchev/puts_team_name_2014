@@ -7,12 +7,16 @@ class JSONWriter
 		student_hash = write_to_json_hash["homework_evaluation"]
 		student_hash["time_taken"] = time_taken
 		student_hash["student"] = Array.new
+		
 		data.each do |name, values|
 			cur_hash = Hash.new
 			cur_hash["name"] = name
-			0.upto(TOTAL_HOMEWORKS){|homework|
-				cur_hash[HOMEWORK_NAMES[homework]] = values[homework]
-			}
+
+			results = HOMEWORK_NAMES + HOMEWORK_NUMBERS_FLOG_FLAY.map { |num| "g#{num}" } + 
+				HOMEWORK_NUMBERS_FLOG_FLAY.map { |num| "y#{num}" }
+			results.each_with_index do |result, index|
+				cur_hash[result] = values[index]
+			end
 			
 			student_hash["student"] << cur_hash
 		end

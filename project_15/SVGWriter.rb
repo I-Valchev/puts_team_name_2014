@@ -20,12 +20,12 @@ class SVGWriter
 		  	doc.rect x:-80, y:-400, width:660, height:500, fill: "#FFFFCC"
 		  	doc.text_ "Results", x:175, y:-325, "font-size"=> 40
 		  	doc.text_ "Time taken: #{time_taken}", x:-60, y:-385, "font-size"=> 10
-		  	0.upto(TOTAL_HOMEWORKS) do |column|
+		  	HOMEWORK_NAMES.each_with_index do |hw_name, column|
 		  		percentage = (valid_tasks[column]/58.0)*100
 		  		doc.rect x:(column*column_separation*5),y:-valid_tasks[column]*5,width:50,height:valid_tasks[column]*5,stroke:"red"
 				doc.text_ "#{percentage.round(2)}%", x:(column*75), y:-(valid_tasks[column]*5)-20, "font-size"=> 15
 				doc.text_ "(#{valid_tasks[column]}/58)", x:(column*75), y:-(valid_tasks[column]*5)-3, "font-size"=> 15
-				doc.text_ HOMEWORK_NAMES[column], x:(column*column_separation*5), y:(column_separation-5), "font-size"=> 12
+				doc.text_ hw_name, x:(column*column_separation*5), y:(column_separation-5), "font-size"=> 12
 		  	end
 		  end
 		end
