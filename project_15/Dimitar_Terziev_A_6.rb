@@ -39,7 +39,7 @@ for i in 1..2
 			when 3
 				check.check_folder "class004", data, 3, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$/, i
 			when 4
-				chech.presentation_names data, student_to_team, i
+				Presentations::presentation_names data, student_to_team, i
 			when 5..6
 				check.check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i
 		end
