@@ -26,7 +26,8 @@ Dir.chdir repo_folder
 # --- CHECKING
 check = Check.new
 student_to_team = Hash.new
-csv_reading(student_to_team)
+Presentations::csv_reading(student_to_team)
+
 for i in 1..2
 	0.upto(TOTAL_HOMEWORKS) do |curr_hw|
 		system "git checkout `git rev-list -1 --before=\"#{DEADLINES[curr_hw]}\" master` -q" if i==2
