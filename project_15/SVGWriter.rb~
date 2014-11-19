@@ -50,6 +50,7 @@ class SVGWriter
 		  	end
 		  end
 		end
+		#puts b.to_xml
 		File.open("results_Dimitar_Terziev_A_6.svg", "w") do |file|
 			file.puts b.to_xml
 		end
