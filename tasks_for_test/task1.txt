@@ -1,0 +1,68 @@
+Develop a program named FirstName_LastName_ClassNumber_[hashcode].rb
+
+1. You are given a command-line argument with an XML document
+2. If there are other arguments they should be discarded
+3. Create a CSV file with all albums
+	[more expensive than 10 dollars]
+	[cheaper than 15 dollars]
+	[released after 2000]
+	[released before 2007]
+4. The format is: 
+	AlbumName1,AlbumName2,AlbumName3...AlbumNameN
+5. Sort the result by AlbumName [ASC/DESC]
+6. Produce a result in CSV format named result.csv:
+
+<music_store>
+	<album>
+		<name>Name1</name>
+		<artist>Artist1</artist>
+		<release_year>Year1</release_year>
+		<price>Price1</price>
+	</album>
+	<album>
+		<name>Name2</name>
+		<artist>Artist2</artist>
+		<release_year>Year2</release_year>
+		<price>Price2</price>
+	</album>
+	...
+	<album>
+		<name>NameN</name>
+		<artist>ArtistN</artist>
+		<release_year>YearN</release_year>
+		<price>PriceN</price>
+	</album>
+</music_store>
+
+<music_store>
+	<album>
+		<name>Crazy Folks</name>
+		<artist>The Crazy</artist>
+		<release_year>2005</release_year>
+		<price>5.99</price>
+	</album>
+	<album>
+		<name>My album</name>
+		<artist>Me</artist>
+		<release_year>1997</release_year>
+		<price>25.99</price>
+	</album>
+	<album>
+		<name>NullPointerException</name>
+		<artist>Java</artist>
+		<release_year>2014</release_year>
+		<price>9.99</price>
+	</album>
+	<album>
+		<name>Insert name</name>
+		<artist>Who knows</artist>
+		<release_year>2008</release_year>
+		<price>19.85</price>
+	</album>
+	<album>
+		<name>In da EU</name>
+		<artist>Bulgaria</artist>
+		<release_year>2007</release_year>
+		<price>115.99</price>
+	</album>
+</music_store>

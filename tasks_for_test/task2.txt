@@ -1,0 +1,29 @@
+Develop a program named FirstName_LastName_ClassNumber_[hashcode].rb
+
+1. You are given a command-line argument with a path to a folder
+2. If there are other arguments they should be discarded
+3. Find all students with [n] letters in their [first/last] name
+4. All files are in the format FirstName_LastName_ClassLetter_ClassNumber.rb
+5. Produce a JSON file with the following structure:
+	{
+		"students_with_[n]_letters": [
+			{
+				"first_name": "", 
+				"last_name": "", 
+				"class": "", 
+				"number": ""
+			},
+			{
+				"first_name": "", 
+				"last_name": "", 
+				"class": "", 
+				"number": ""
+			},
+			{
+				"first_name": "", 
+				"last_name": "", 
+				"class": "", 
+				"number": ""
+			}
+		]
+	}
