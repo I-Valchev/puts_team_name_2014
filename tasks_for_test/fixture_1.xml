@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<music_store>
+  <album>
+    <name>Name1</name>
+    <artist>Artist1</artist>
+    <release_year>Year1</release_year>
+    <price>20</price>
+  </album>
+  <album>
+    <name>Sisisa</name>
+    <artist>Sasasi</artist>
+    <release_year>2003</release_year>
+    <price>17</price>
+  </album>
+  <album>
+    <name>Cheap</name>
+    <artist>Dog</artist>
+    <release_year>2009</release_year>
+    <price>2</price>
+  </album>
+  <album>
+    <name>Yoyo</name>
+    <artist>Toto</artist>
+    <release_year>1977</release_year>
+    <price>15</price>
+  </album>
+  <album>
+    <name>Nil</name>
+    <artist>Nilili</artist>
+    <release_year>104</release_year>
+    <price>4</price>
+  </album>
+</music_store>
