@@ -6,7 +6,7 @@ Develop a program named FirstName_LastName_ClassNumber_<%=@task_number%>.rb
 4. Create a JSON file with the following structure:
 
 {
-	"student_with_zeroes": {
+	"student_with_zero": {
 		"student": [
 			"FirstName1_LastName1", 
 			"FirstName2_LastName2",
