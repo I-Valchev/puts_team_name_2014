@@ -13,7 +13,7 @@ class Task2 < Task
 			:expected=>
 %q[
 	{
-		"students_with_<%= @how_many_letters %>_letters": {
+		"students_with_5_letters": {
 			"student": [
 					{
 						"first_name": Petar, 
@@ -46,7 +46,7 @@ class Task2 < Task
 			:in_what_order => "DESC",
 			:expected=>
 %q[	{
-		"students_with_<%= @how_many_letters %>_letters": {
+		"students_with_10_letters": {
 			"student": [
 				{
 					"first_name": Name, 
@@ -67,7 +67,7 @@ class Task2 < Task
 			:in_what_order => "DESC",
 			:expected=>
 %q[	{
-		"students_with_<%= @how_many_letters %>_letters": {
+		"students_with_7_letters": {
 			"student": [
 				{
 					"first_name": Strinka, 
