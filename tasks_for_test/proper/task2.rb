@@ -37,6 +37,7 @@ class Task2 < Task
 			}
 		}
 	}]
+		}
 
 		context1_2 = {
 			:task_number=>"1",
