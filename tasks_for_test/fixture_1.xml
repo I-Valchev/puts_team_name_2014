@@ -3,7 +3,7 @@
   <album>
     <name>Name1</name>
     <artist>Artist1</artist>
-    <release_year>Year1</release_year>
+    <release_year>2004</release_year>
     <price>20</price>
   </album>
   <album>
@@ -29,5 +29,11 @@
     <artist>Nilili</artist>
     <release_year>104</release_year>
     <price>4</price>
+  </album>
+  <album>
+    <name>Always</name>
+    <artist>Here</artist>
+    <release_year>2005</release_year>
+    <price>15</price>
   </album>
 </music_store>
