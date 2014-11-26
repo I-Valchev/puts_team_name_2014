@@ -10,9 +10,7 @@ class Task1 < Task
 			:value=>"10 dollars",
 			:in_what_order=>"ASC",
 			:expected=>
-"F5le8,L5le1
-F5le2,L5le2
-F5le3,L5le3
+"Always,Name1,Sisisa,Yoyo
 "
 		}
 
@@ -22,9 +20,7 @@ F5le3,L5le3
 			:value=>"15 dollars",
 			:in_what_order=>"DESC",
 			:expected=>
-"F5le8,L5le1
-F5le2,L5le2
-F5le3,L5le3
+"Nil,Cheap
 "
 		}
 
@@ -34,9 +30,7 @@ F5le3,L5le3
 			:value=>"2000",
 			:in_what_order=>"ASC",
 			:expected=>
-"F5le8,L5le1
-F5le2,L5le2
-F5le3,L5le3
+"Always,Cheap,Name1,Sisisa
 "
 		}
 
@@ -46,9 +40,7 @@ F5le3,L5le3
 			:value=>"2007",
 			:in_what_order=>"DESC",
 			:expected=>
-"F5le8,L5le1
-F5le2,L5le2
-F5le3,L5le3
+"Yolo,Sisisa,Nil,Name1,Always
 "
 		}
 		
