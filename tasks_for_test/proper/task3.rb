@@ -8,60 +8,92 @@ class Task3 < Task
 			:task_number=>"1",
 			:which_to_sort => "first name",
 			:in_what_order => "ASC",
-			:expected=>
-"F10letter1_L10letter1.rb,24
-F10letter2_L10letter2.rb,24
-F10letter3_L10letter4.rb,24
-F10letters_L10letters.rb,24
-FirstName3Invalid_LastName3Invalid.rb,37
-FirstName3_LastName3Invalid.rb,31
-invalid.rb,10
-"
+			:expected=><<-EOS
+{
+  "students_with_zero": [
+    "Dimitar_Andreev",
+    "Dimitar_Matev",
+    "Dimitar_Nestorov",
+    "Georgi_Ivanov",
+    "Kaloyan_Nikov",
+    "Konstantin_Kostov",
+    "Marian_Belchev",
+    "Simeon_Shopkin",
+    "Stanislav_Gospodinov",
+    "atanaska_ivancheva",
+    "mladen_karadimov"
+  ]
+}
+EOS
 		}
 
 		context1_2 = {
 			:task_number=>"1",
 			:which_to_sort => "last name",
 			:in_what_order => "ASC",
-			:expected=>
-"F10letter1_L10letter1.rb,24
-F10letter2_L10letter2.rb,24
-F10letter3_L10letter4.rb,24
-F10letters_L10letters.rb,24
-FirstName3Invalid_LastName3Invalid.rb,37
-FirstName3_LastName3Invalid.rb,31
-invalid.rb,10
-"
+			:expected=><<-EOS
+{
+  "students_with_zero": [
+    "Dimitar_Andreev",
+    "Marian_Belchev",
+    "Stanislav_Gospodinov",
+    "Georgi_Ivanov",
+    "Konstantin_Kostov",
+    "Dimitar_Matev",
+    "Dimitar_Nestorov",
+    "Kaloyan_Nikov",
+    "Simeon_Shopkin",
+    "atanaska_ivancheva",
+    "mladen_karadimov"
+  ]
+}
+EOS
 		}
 
 		context1_3 = {
 			:task_number=>"1",
 			:which_to_sort => "last name",
 			:in_what_order => "DESC",
-			:expected=>
-"F10letter1_L10letter1.rb,24
-F10letter2_L10letter2.rb,24
-F10letter3_L10letter4.rb,24
-F10letters_L10letters.rb,24
-FirstName3Invalid_LastName3Invalid.rb,37
-FirstName3_LastName3Invalid.rb,31
-invalid.rb,10
-"
+			:expected=><<-EOS
+{
+  "students_with_zero": [
+    "mladen_karadimov",
+    "atanaska_ivancheva",
+    "Simeon_Shopkin",
+    "Kaloyan_Nikov",
+    "Dimitar_Nestorov",
+    "Dimitar_Matev",
+    "Konstantin_Kostov",
+    "Georgi_Ivanov",
+    "Stanislav_Gospodinov",
+    "Marian_Belchev",
+    "Dimitar_Andreev"
+  ]
+}
+EOS
 		}
 
 		context1_4 = {
 			:task_number=>"1",
 			:which_to_sort => "first name",
 			:in_what_order => "DESC",
-			:expected=>
-"F10letter1_L10letter1.rb,24
-F10letter2_L10letter2.rb,24
-F10letter3_L10letter4.rb,24
-F10letters_L10letters.rb,24
-FirstName3Invalid_LastName3Invalid.rb,37
-FirstName3_LastName3Invalid.rb,31
-invalid.rb,10
-"
+			:expected=><<-EOS
+{
+  "students_with_zero": [
+    "mladen_karadimov",
+    "atanaska_ivancheva",
+    "Stanislav_Gospodinov",
+    "Simeon_Shopkin",
+    "Marian_Belchev",
+    "Konstantin_Kostov",
+    "Kaloyan_Nikov",
+    "Georgi_Ivanov",
+    "Dimitar_Andreev",
+    "Dimitar_Matev",
+    "Dimitar_Nestorov"
+  ]
+}
+EOS
 		}
 
 	
