@@ -11,10 +11,32 @@ class Task2 < Task
 			:which_to_sort => "last name",
 			:in_what_order => "ASC",
 			:expected=>
-"L5le1,F5le8
-L5le2,F5le2
-"
+%q[
+	{
+		"students_with_<%= @how_many_letters %>_letters": {
+			"student": [
+					{
+						"first_name": Petar, 
+						"last_name": First, 
+						"class": A, 
+						"number": 2
+					},
+					{
+						"first_name": First, 
+						"last_name": LastNam, 
+						"class": A, 
+						"number": 5
+					},
+					{
+						"first_name": Pesho, 
+						"last_name": Mesho, 
+						"class": A, 
+						"number": 12
+					}
+				]
+			}
 		}
+	}]
 
 		context1_2 = {
 			:task_number=>"1",
@@ -23,9 +45,18 @@ L5le2,F5le2
 			:which_to_sort => "first name",
 			:in_what_order => "DESC",
 			:expected=>
-"L5le1,F5le8
-L5le2,F5le2
-"
+%q[	{
+		"students_with_<%= @how_many_letters %>_letters": {
+			"student": [
+				{
+					"first_name": Name, 
+					"last_name": LastName12, 
+					"class": B, 
+					"number": 10
+				}
+			]
+		}
+	}]
 		}
 
 		context1_3 = {
@@ -35,9 +66,18 @@ L5le2,F5le2
 			:which_to_sort => "first name",
 			:in_what_order => "DESC",
 			:expected=>
-"L5le1,F5le8
-L5le2,F5le2
-"
+%q[	{
+		"students_with_<%= @how_many_letters %>_letters": {
+			"student": [
+				{
+					"first_name": Strinka, 
+					"last_name": Babcheva, 
+					"class": A, 
+					"number": 12
+				}
+			]
+		}
+	}]
 		}
 		
 		[context1_1,context1_2,context1_3]
