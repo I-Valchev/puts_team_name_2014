@@ -1,4 +1,5 @@
 class Check
+  @@flog_flay_index = 0
   def check_entry_level data, value_to_write
       acceptable_extensions = [ '.c', '.cpp', '.cc', '.rb', '.py', '.java', '.html', '.js', '.pas' ]
       hash = Hash.new { |hash, student_name| hash[student_name] = Array.new }
@@ -23,7 +24,8 @@ class Check
     end
   end
 
-  def check_folder folder_path, data, folder_number, filename_format, value_to_write, flog_flay_index
+  def check_folder folder_path, data, folder_number, filename_format, value_to_write
+  	@@flog_flay_index+=1
     Dir.glob("#{folder_path}**/*.*") do |file_path|
       filename = file_path.split('/').last
 
@@ -33,17 +35,7 @@ class Check
         data[full_name][folder_number] = value_to_write
         if value_to_write == 1 # Run flay and flog on the latest versions
           flog_output = `flog #{file_path} 2> /dev/null` # Ignore the standard error
-=begin
-          cur_class = folder_path.split('/').first.sub('_homework','') # folder_path is either class??? or class???_homework
-          
-          cur_hw_number = cur_class.match(/[1-9]+/).to_s.to_i # match returns MatchData, it has no to_i method
-          if cur_hw_number==17
-		  	cur_hw_number += folder_path.split('/')[1].gsub(/[^\d]+/,'').to_i/10.0
-          end
-          p cur_hw_number
-=end
-		  p flog_flay_index
-          flog_value_index_in_results = TOTAL_HOMEWORKS + flog_flay_index#+ HOMEWORK_NUMBERS_FLOG_FLAY.index(cur_hw_number)
+          flog_value_index_in_results = TOTAL_HOMEWORKS + @@flog_flay_index#+ HOMEWORK_NUMBERS_FLOG_FLAY.index(cur_hw_number)
 
           if $?.to_i == 0
             flog_value = flog_output.split("\n").first.split(':').first.gsub(' ', '')
@@ -54,7 +46,7 @@ class Check
 
           flay_output = `flay #{file_path}`
 
-          flay_value_index_in_results = TOTAL_HOMEWORKS + HOMEWORK_NUMBERS_FLOG_FLAY.size + flog_flay_index
+          flay_value_index_in_results = TOTAL_HOMEWORKS + HOMEWORK_NUMBERS_FLOG_FLAY.size + @@flog_flay_index
 
           flay_value = flay_output.split("\n").first.match(/\d+/)
 

@@ -45,23 +45,23 @@ for i in 1..2
 			when 0
 				check.check_entry_level data, i
 			when 1..2
-				check.check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class#{HOMEWORK_NUMBERS[curr_hw]}_[12].rb$/, i, curr_hw
+				check.check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class#{HOMEWORK_NUMBERS[curr_hw]}_[12].rb$/, i
 			when 3
-				check.check_folder "class004", data, 3, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$/, i, curr_hw
+				check.check_folder "class004", data, 3, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$/, i
 			when 4
 				Presentations::presentation_names data, student_to_team, i
 			when 5..6
-				check.check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i, curr_hw-1
+				check.check_folder "#{HOMEWORK_NAMES[curr_hw]}_homework/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i
 			when 7
-				check.check_folder "class017_homework/homework1/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i, curr_hw-1
+				check.check_folder "class017_homework/homework1/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i
 			when 8
-				check.check_folder "class017_homework/homework2/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i, curr_hw-1
+				check.check_folder "class017_homework/homework2/", data, curr_hw, /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$/, i
 		end
 	end
 end
 
 # fill in the missing flog and flay values with -1, i.e. no homework, no value to write, not 0 which is a value!
-TOTAL_HOMEWORKS.upto(data.first.last.size - 1) do |index| 
+(TOTAL_HOMEWORKS+1).upto(data.first.last.size - 1) do |index|
 	data.each_value { |v| v[index] ||= -1 }
 end
 
