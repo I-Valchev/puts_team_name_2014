@@ -1,0 +1,32 @@
+Develop a program named FirstName_LastName_ClassNumber_858bca1c.rb
+
+1. You are given a command-line argument with a path to a folder
+2. If there are other arguments they should be discarded
+3. Find all students with 7 letters in their first name
+4. Sort the result by first name DESC
+4. All files are in the format FirstName_LastName_ClassLetter_ClassNumber.rb
+5. Produce a JSON file with the following structure:
+	{
+		"students_with_7_letters": {
+			"student": [
+				{
+					"first_name": ..., 
+					"last_name": ..., 
+					"class": ..., 
+					"number": ...
+				},
+				{
+					"first_name": ..., 
+					"last_name": ..., 
+					"class": ..., 
+					"number": ...
+				},
+				{
+					"first_name": ..., 
+					"last_name": ..., 
+					"class": ..., 
+					"number": ...
+				}
+			]
+		}
+	}
