@@ -42,7 +42,7 @@ class Check
   end
 
   def check_folder folder_path, data, folder_number, filename_format, value_to_write, how_many_to_check
-  	@@flog_flay_index+=1
+    @@flog_flay_index+=1
     checked_programs = 0
     Dir.glob("#{folder_path}**/*.*") do |file_path|
       filename = file_path.split('/').last
@@ -57,15 +57,21 @@ class Check
         checked_programs += 1 if value_to_write == 1 # only the first time around
         @helper[folder_path] << full_name if value_to_write == 1
         if value_to_write == 1 # Run flay and flog on the latest versions
-          flog_output = `flog #{file_path} 2> /dev/null` # Ignore the standard error
-          flog_value_index_in_results = TOTAL_HOMEWORKS + @@flog_flay_index#+ HOMEWORK_NUMBERS_FLOG_FLAY.index(cur_hw_number)
-
-          if $?.to_i == 0
-            flog_value = flog_output.split("\n").first.split(':').first.gsub(' ', '')
-            data[full_name][flog_value_index_in_results] = flog_value
+      
+          if folder_path == "class014_homework/" || folder_path == "class015_homework/" || folder_path == "class016_homework/" || folder_path == "class017_homework/homework2/" then
+           flog_output = `flog #{folder_path} 2> /dev/null` # Ignore the standard error
           else
-            data[full_name][flog_value_index_in_results] = "error"
+           flog_output = `flog #{file_path} 2> /dev/null` # Ignore the standard error
           end
+           
+           flog_value_index_in_results = TOTAL_HOMEWORKS + @@flog_flay_index#+ HOMEWORK_NUMBERS_FLOG_FLAY.index(cur_hw_number)
+           if $?.to_i == 0
+             flog_value = flog_output.split("\n").first.split(':').first.gsub(' ', '')
+             data[full_name][flog_value_index_in_results] = flog_value
+           else
+             data[full_name][flog_value_index_in_results] = "error"
+            end
+          
 
           flay_output = `flay #{file_path}`
 
