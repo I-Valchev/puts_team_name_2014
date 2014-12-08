@@ -6,12 +6,14 @@ student_to_arguments = {
 	"Stanimir_Bogdanov" => "#{repo_path}class016/Vanya_Santeva_5_B/fixture/",
 	"Elena_Karakoleva" => "#{repo_path}class016/Iliyan_Germanov_17_B/fixture/task1.csv",
 	"Dimitar_Matev" => "#{repo_path}class016/Veselin_Dechev_2_A/fixture/"
+	"Borislav_Rusinov" => "#{repo_path}class016/Borislav_Stratev_2_B/fixtures/filename1.csv"
 }
 
 student_to_produced_file = {
 	"Stanimir_Bogdanov" => "result.json",
 	"Elena_Karakoleva" => "result.xml",
-	"Dimitar_Matev" => "result.csv"
+	"Dimitar_Matev" => "result.csv",
+	"Borislav_Rusinov" => "result.xml"
 }
 
 results = Hash.new
