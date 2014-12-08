@@ -5,7 +5,7 @@ repo_path = ARGV[0]
 student_to_arguments = {
 	"Stanimir_Bogdanov" => "#{repo_path}class016/Vanya_Santeva_5_B/fixture/",
 	"Elena_Karakoleva" => "#{repo_path}class016/Iliyan_Germanov_17_B/fixture/task1.csv",
-	"Dimitar_Matev" => "#{repo_path}class016/Veselin_Dechev_2_A/fixture/"
+	"Dimitar_Matev" => "#{repo_path}class016/Veselin_Dechev_2_A/fixture/",
 	"Borislav_Rusinov" => "#{repo_path}class016/Borislav_Stratev_2_B/fixtures/filename1.csv"
 }
 
@@ -13,7 +13,7 @@ student_to_produced_file = {
 	"Stanimir_Bogdanov" => "result.json",
 	"Elena_Karakoleva" => "result.xml",
 	"Dimitar_Matev" => "result.csv",
-	"Borislav_Rusinov" => "result.xml"
+	"Borislav_Rusinov" => "results.xml"
 }
 
 results = Hash.new
@@ -32,7 +32,7 @@ Dir.glob("*.rb") do |long_filepath|
 	first_name, last_name = file.split('_')
 	hashcode = file.split('.').first.split('_').last
 
-	next unless hashcode.length == 8
+	next unless hashcode.length == 6 || hashcode.length == 8
 
 	Dir.glob("../expects/#{hashcode}.*") do |expect_file|
 		expect_content = File.read(expect_file)
