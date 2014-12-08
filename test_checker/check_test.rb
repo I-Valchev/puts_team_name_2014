@@ -36,7 +36,7 @@ Dir.glob("*.rb") do |long_filepath|
 
 	Dir.glob("../expects/#{hashcode}.*") do |expect_file|
 		expect_content = File.read(expect_file)
-		if first_name == 'Elena' || first_name == 'Stanimir' || last_name == 'Matev'
+		if results.has_key?(first_name + '_' + last_name)
 			system("ruby #{long_filepath} #{student_to_arguments[first_name + '_' + last_name]}")
 			if $?.to_i != 0
 				results[first_name + '_' + last_name] = "error"
