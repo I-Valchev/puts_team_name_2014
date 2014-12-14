@@ -1,0 +1,6 @@
+# VALID_OUTPUT_FORMATS:
+  - 'csv'
+  - 'xml'
+  - 'json'
+  - 'html'
+  - 'svg'
