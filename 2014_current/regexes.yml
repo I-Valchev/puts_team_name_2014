@@ -1,0 +1,9 @@
+- non
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class2_[12].rb$
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class3_[12].rb$
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_Class4_[12].rb$
+- non
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$
+- ^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[AB]_\d+.rb$
